@@ -22,22 +22,23 @@ export function EditorErrorItem({ path }: EditorErrorItemProps) {
   const cellErrors$ = useObservable(() =>
     STORES.validation.errorMap[path].get(),
   );
-  const [rowIndex, columnName] = useMemo(() => path.split(";"), [path]);
+  const [rowIndexStr, columnName] = useMemo(() => path.split(";"), [path]);
+
+  const rowIndex = useMemo(() => parseInt(rowIndexStr), [rowIndexStr]);
 
   const scrollToCell = () => {
     const tableRef = STORES.editor.tableRef.current.peek();
     if (!tableRef?.scrollToIndex) return;
-    const index = parseInt(rowIndex);
-    if (isNaN(index)) return;
+    if (isNaN(rowIndex)) return;
 
-    tableRef.scrollToIndex(index);
+    tableRef.scrollToIndex(rowIndex);
   };
 
   return (
     <YStack mb="$4" p="$4" rounded="$4" gap="$4" theme="error" bg="$background">
       <XStack justify="space-between" items="center">
         <H6>
-          Column {columnName}, Row {rowIndex}
+          Column {columnName}, Row {rowIndex + 1}
         </H6>
         <Tooltip content="Jump to the problematic row.">
           <Button iconAfter={ArrowUpRight} size="$2" onClick={scrollToCell}>
