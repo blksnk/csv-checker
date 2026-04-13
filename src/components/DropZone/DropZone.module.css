@@ -1,0 +1,23 @@
+.dropzone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--c-space-4);
+  gap: var(--c-space-4);
+  border-width: 2px;
+  border-radius: var(--c-radius-4);
+  border-color: var(--borderColor);
+  border-style: dashed;
+  background-color: var(--background);
+  outline: none;
+  cursor: pointer;
+}
+
+.dropzone,
+.dropzone span {
+  transition-property: border-color, background-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in;
+}

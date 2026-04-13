@@ -1,0 +1,19 @@
+html {
+  background: var(--background0);
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+*:disabled {
+  cursor: not-allowed;
+}

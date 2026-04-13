@@ -1,0 +1,38 @@
+.editorTable {
+  border-collapse: separate;
+
+  & td,
+  & th {
+    border-bottom: 1px solid var(--borderColor);
+    border-right: 1px solid var(--borderColor);
+  }
+
+  & td input:not([type="checkbox"]) {
+    width: 100%;
+    vertical-align: middle;
+  }
+
+  & td:has(.editorCellDisplay) > span > span > div {
+    padding: var(--c-space-2);
+  }
+
+  & td[data-state="invalid"] {
+    background: var(--red4);
+  }
+}
+
+.editorTable .indexCell {
+  position: sticky;
+  left: 0;
+  background: var(--background);
+  padding: var(--c-space-2);
+  z-index: 1;
+  width: 5rem;
+
+  & p,
+  & h6 {
+    display: block;
+    text-align: center;
+    min-width: 100%;
+  }
+}

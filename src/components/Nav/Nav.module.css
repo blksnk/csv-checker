@@ -1,0 +1,19 @@
+.navLink {
+  text-decoration: none;
+  color: var(--color);
+  padding: var(--c-space-2);
+  background: var(--background);
+  transition-property: background;
+  border-radius: var(--c-radius-2);
+  cursor: pointer;
+}
+
+.navLink:hover {
+  background: var(--backgroundHover);
+  color: var(--colorHover);
+}
+
+.navLink[aria-current="page"] {
+  background: var(--backgroundFocus);
+  color: var(--colorFocus);
+}
