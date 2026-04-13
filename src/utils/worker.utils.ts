@@ -200,7 +200,6 @@ function isTransferable(data) {
     data instanceof OffscreenCanvas ||
     data instanceof ImageBitmap ||
     data instanceof MessagePort ||
-    data instanceof MediaSourceHandle ||
     data instanceof ReadableStream ||
     data instanceof WritableStream ||
     data instanceof TransformStream ||

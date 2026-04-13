@@ -28,6 +28,7 @@ export async function validateCsvData(
   columns: SchemaColumn[],
 ): Promise<ValidationResult> {
   let truncated = false;
+  // TODO: terminate all currenly running workers before triggering validation
   const workerResults = await Promise.all(
     columns.map(async (column) => {
       const columnName = column.name;
