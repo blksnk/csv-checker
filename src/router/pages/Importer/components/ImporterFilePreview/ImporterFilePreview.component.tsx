@@ -159,7 +159,7 @@ function FilePreviewContents({
                 <Show
                   if={STORES.schema.columns[name]}
                   else={() => (
-                    <Tooltip content="This column's data will be save in your browser.">
+                    <Tooltip content="This column's data will be saved upon upload.">
                       <Badge theme="blue">New column</Badge>
                     </Tooltip>
                   )}
