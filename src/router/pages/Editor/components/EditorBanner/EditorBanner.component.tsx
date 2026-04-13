@@ -85,7 +85,7 @@ export function EditorBanner() {
             size="$2"
             icon={Download}
             theme="accent"
-            onClick={STORES.csv.download}
+            onClick={() => STORES.csv.download()}
           >
             Download
           </Button>

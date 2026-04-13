@@ -124,7 +124,7 @@ export function EditorErrorPanel() {
               <Button
                 icon={Download}
                 theme="accent"
-                onClick={STORES.csv.download}
+                onClick={() => STORES.csv.download()}
               >
                 Download my data as a CSV file
               </Button>
