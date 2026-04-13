@@ -6,6 +6,11 @@ import { useState } from "react";
 import { Button, Form, Group, Input } from "tamagui";
 import { Tooltip } from "@/components";
 
+/**
+ * Numeric row input that scrolls the virtualized table to a 1-based row number.
+ *
+ * @return {JSX.Element} Mini form with submit
+ */
 export function EditorBannerNavigator() {
   const [rowNumber, setRowNumber] = useState<Optional<number>>(undefined);
 

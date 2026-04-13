@@ -1,6 +1,12 @@
 import { H6, Paragraph, XStack, YStack } from "tamagui";
 import type { CalloutProps } from "./Callout.types";
 
+/**
+ * Themed callout box for inline notices and explanations.
+ *
+ * @param {CalloutProps} props - Body, optional title and icon, theme
+ * @return {JSX.Element} Callout stack
+ */
 export function Callout({ children, title, icon: Icon, theme }: CalloutProps) {
   return (
     <YStack

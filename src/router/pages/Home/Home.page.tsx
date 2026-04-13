@@ -4,6 +4,11 @@ import { Link } from "react-router";
 import { Button, H1, H2, Paragraph, Separator, Text, YStack } from "tamagui";
 import { PAGES } from "..";
 
+/**
+ * Landing page with workflow overview and navigation into the importer.
+ *
+ * @return {JSX.Element} Home layout
+ */
 export function HomePage() {
   return (
     <PageLayout

@@ -1,5 +1,5 @@
 import { PageLayout } from "@/layouts";
-import { DropZone } from "@/components";
+import { Callout, DropZone } from "@/components";
 import { H4, Paragraph, XStack, YStack } from "tamagui";
 import { useMemo, useState } from "react";
 import type { Optional } from "@ubloimmo/front-util";
@@ -9,6 +9,11 @@ import { useValue } from "@legendapp/state/react";
 import { STORES } from "@/stores";
 import { lineBreaker } from "@/utils/string.utils";
 
+/**
+ * CSV upload step with drop zone, overwrite warnings, and optional preview panel.
+ *
+ * @return {JSX.Element} Importer layout
+ */
 export function ImporterPage() {
   const [file, setFile] = useState<Optional<File>>(undefined);
 
@@ -38,7 +43,7 @@ export function ImporterPage() {
     }
     return {
       title:
-        "It seems you uploaded a different file from the one you're currenly editing.",
+        "It seems you uploaded a different file than the one you're currenly editing.",
       body,
     };
   }, [file, storedFileName]);
@@ -66,25 +71,13 @@ export function ImporterPage() {
 
           <DropZone onDrop={setFile} label={dropZoneLabel} />
           {overwriteWarning && (
-            <YStack
-              width="100%"
+            <Callout
               theme="warning_surface1"
-              rounded="$4"
-              p="$4"
-              gap="$1"
-              bg="$background"
-              border="1px solid $borderColor"
+              icon={AlertTriangle}
+              title={overwriteWarning.title}
             >
-              <XStack gap="$4">
-                <AlertTriangle size="$2" />
-                <Paragraph fontWeight="800" mb="$4">
-                  {overwriteWarning.title}
-                </Paragraph>
-              </XStack>
-              <Paragraph size="$3">
-                {lineBreaker(overwriteWarning.body)}
-              </Paragraph>
-            </YStack>
+              {lineBreaker(overwriteWarning.body)}
+            </Callout>
           )}
         </YStack>
         {file && <ImporterFilePreview file={file} cancel={removeFile} />}

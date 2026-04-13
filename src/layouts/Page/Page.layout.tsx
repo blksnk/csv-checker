@@ -4,6 +4,12 @@ import { Header } from "../../components";
 import { type Nullable } from "@ubloimmo/front-util";
 import { useRef, type ReactNode } from "react";
 
+/**
+ * Standard page: header, scrollable body, optional custom child with `containerRef`.
+ *
+ * @param {PageLayoutProps} props - Header, padding, and children / `ChildComponent`
+ * @return {JSX.Element} Full-page stack
+ */
 export function PageLayout({
   children,
   ChildComponent,

@@ -8,6 +8,11 @@ import styles from "./EditorTable.module.css";
 
 const OVERSCAN_PX = 300;
 
+/**
+ * Virtualized CSV table with fixed header and row index column.
+ *
+ * @return {JSX.Element} Virtuoso table or loading spinner
+ */
 export function EditorTable() {
   const csvRows = useValue(STORES.csv.rows, { shallow: true });
 

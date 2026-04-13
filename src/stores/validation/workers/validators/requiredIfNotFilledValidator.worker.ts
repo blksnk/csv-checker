@@ -2,6 +2,7 @@ import type { CsvCellValue } from "@/stores/csv/csv.types";
 import type { SchemaColumnName } from "@/stores/schema";
 import type { ValidationErrorList } from "../../validation.types";
 
+/** Input for {@link validateRequiredIfNotFilled}. */
 type ValidateRequiredIfNotFilledPayload = {
   columnCells: CsvCellValue[];
   columnName: SchemaColumnName;
@@ -10,6 +11,12 @@ type ValidateRequiredIfNotFilledPayload = {
   maxOutput: number;
 };
 
+/**
+ * Requires a value in `columnName` when the paired “if not filled” column is empty on the same row.
+ *
+ * @param {ValidateRequiredIfNotFilledPayload} payload - Both columns’ cells and names, plus error cap
+ * @return {ValidationErrorList<"requiredIfNotFilled">} Conditional required errors
+ */
 export function validateRequiredIfNotFilled({
   columnCells,
   columnName,

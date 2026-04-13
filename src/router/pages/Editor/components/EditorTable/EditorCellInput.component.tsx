@@ -10,10 +10,12 @@ import { isBoolean, type Optional, type ValueMap } from "@ubloimmo/front-util";
 import type { FC, FocusEvent, HTMLInputTypeAttribute } from "react";
 import { Checkbox, type CheckedState, Input } from "tamagui";
 
+/** Binds editors to a stable {@link CellPath}. */
 type EditorCellInputProps = {
   path$: Observable<CellPath>;
 };
 
+/** Shared props for concrete cell widgets. */
 type EditorCellInputInnerProps = EditorCellInputProps & {
   column$: Observable<SchemaColumn>;
   value$: Observable<(() => Optional<string>) | Optional<string>>;
@@ -35,6 +37,12 @@ const INPUT_TYPE_MAP: Partial<
   string: "text",
 };
 
+/**
+ * Default text/numeric/date input; commits on blur via {@link STORES.editor.editCell}.
+ *
+ * @param {EditorCellInputInnerProps} props - Column, path, and value observables
+ * @return {JSX.Element} Tamagui input
+ */
 function GenericCellInput({
   column$,
   path$,
@@ -72,6 +80,12 @@ const CURRENCY_SIGN_OPTIONS: SelectOption<string>[] = ["$", "€", "¥", "£"].m
   (sign) => ({ label: sign, value: sign }),
 );
 
+/**
+ * Small select for `currency_sign` columns.
+ *
+ * @param {EditorCellInputInnerProps} props - Column, path, value
+ * @return {JSX.Element} Select
+ */
 function CurrencySignSelect({
   value$,
   path$,
@@ -100,6 +114,12 @@ function CurrencySignSelect({
   );
 }
 
+/**
+ * Checkbox mapping `"true"` / `"false"` strings for `boolean` columns.
+ *
+ * @param {EditorCellInputInnerProps} props - Column, path, value
+ * @return {JSX.Element} Checkbox
+ */
 function BooleanCheckbox({
   value$,
   path$,
@@ -131,6 +151,12 @@ function BooleanCheckbox({
   );
 }
 
+/**
+ * Non-default editors for `currency_sign` and `boolean` column types.
+ *
+ * @param {EditorCellInputInnerProps} innerProps - Shared cell props
+ * @return {Partial<ValueMap<SchemaColumnType, FC<EditorCellInputInnerProps>>>} Type-specific components
+ */
 const SPECIFIC_INPUT_CASES = (
   innerProps: EditorCellInputInnerProps,
 ): Partial<ValueMap<SchemaColumnType, FC<EditorCellInputInnerProps>>> => ({
@@ -138,11 +164,23 @@ const SPECIFIC_INPUT_CASES = (
   boolean: () => <BooleanCheckbox {...innerProps} />,
 });
 
+/**
+ * Merges {@link SPECIFIC_INPUT_CASES} with the default text input case.
+ *
+ * @param {EditorCellInputInnerProps} innerProps - Shared cell props
+ * @return Record keyed by type with `default` fallback
+ */
 const INPUT_CASES = (innerProps: EditorCellInputInnerProps) => ({
   ...SPECIFIC_INPUT_CASES(innerProps),
   default: () => <GenericCellInput {...innerProps} />,
 });
 
+/**
+ * Picks input widget by {@link SchemaColumnType} (text, checkbox, currency sign select, etc.).
+ *
+ * @param {EditorCellInputProps} props - Observable cell path
+ * @return {JSX.Element} Type-specific editor
+ */
 export function EditorCellInput({ path$ }: EditorCellInputProps) {
   const column$ = useObservable(
     () => STORES.schema.columns[path$.columnName.get()],

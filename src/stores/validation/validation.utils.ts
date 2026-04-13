@@ -1,11 +1,7 @@
 import { WorkerPool } from "@/utils/worker.utils";
 import type { CsvRow } from "../csv/csv.types";
 import type { SchemaColumn } from "../schema";
-import type {
-  ValidationErrorList,
-  ValidationErrorMap,
-  ValidationResult,
-} from "./validation.types";
+import type { ValidationErrorList, ValidationResult } from "./validation.types";
 import { extractColumnCells } from "./workers/columnCellExtractor.worker";
 import { validateColumnTypes } from "./workers/validators/typeValidator.worker";
 import { validateUnique } from "./workers/validators/uniqueValidator.worker";
@@ -20,6 +16,13 @@ const VALIDATION_WORKER_POOL = new WorkerPool();
 // this is already 1000*nb columns * applied validation rules
 const MAX_ERRORS_PER_WORKER = 1_000;
 
+/**
+ * Runs column validators in workers and merges results into a single {@link ValidationErrorMap}.
+ *
+ * @param {CsvRow[]} csvRows - All loaded rows
+ * @param {SchemaColumn[]} columns - Schema columns with types and constraints
+ * @return {Promise<ValidationResult>} Aggregated errors and truncation flag
+ */
 export async function validateCsvData(
   csvRows: CsvRow[],
   columns: SchemaColumn[],
@@ -135,8 +138,6 @@ export async function validateCsvData(
   const errorMap = await VALIDATION_WORKER_POOL.execute(aggregateErrors, {
     columnErrors: workerResults,
   });
-
-  console.log(truncated);
 
   return { errorMap, truncated };
 }

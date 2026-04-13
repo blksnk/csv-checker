@@ -1,6 +1,12 @@
 import { Switch as Sw, View } from "tamagui";
 import type { SwitchProps } from "./Switch.types";
 
+/**
+ * Tamagui switch with consistent height and active color.
+ *
+ * @param {SwitchProps} props - Checked state, change handler, ids
+ * @return {JSX.Element} Wrapped switch control
+ */
 export function Switch(props: SwitchProps) {
   return (
     <View height="$4" justify="center">

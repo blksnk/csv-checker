@@ -26,6 +26,12 @@ import { Tooltip } from "@/components";
 import { Show, useValue } from "@legendapp/state/react";
 import { Upload, X } from "@tamagui/lucide-icons-2";
 
+/**
+ * Right-hand preview of a CSV: column badges, diff vs current schema, import/cancel banner.
+ *
+ * @param {ImporterFilePreviewProps} props - File to preview and cancel handler
+ * @return {JSX.Element} Preview column and actions
+ */
 export function ImporterFilePreview({
   file,
   cancel,
@@ -85,6 +91,12 @@ export function ImporterFilePreview({
   );
 }
 
+/**
+ * Suspense child: resolves `columnsPromise` and renders column summary and schema diff.
+ *
+ * @param {ImporterFilePreviewContentProps} props - File and deferred column parse
+ * @return {JSX.Element} Preview content
+ */
 function FilePreviewContents({
   file,
   columnsPromise,

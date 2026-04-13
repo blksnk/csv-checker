@@ -6,6 +6,13 @@ import { useCallback, useMemo } from "react";
 import type { Optional } from "@ubloimmo/front-util";
 import { getItemIndex, renderSelectItems } from "./Select.utils";
 
+/**
+ * Tamagui select with grouped options, descriptions, and optional nullability.
+ *
+ * @template TValue - String value type for selection
+ * @param {SelectProps<TValue>} props - Value, options, change handler, `nullable`
+ * @return {JSX.Element} Select control
+ */
 export function Select<TValue extends string>(props: SelectProps<TValue>) {
   const onValueChange = useCallback(
     (value: TValue) => {

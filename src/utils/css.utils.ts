@@ -10,13 +10,22 @@ import { isEmptyString, isNonEmptyString } from "./string.utils";
 import { isMap } from "./map.utils";
 import { useMemo } from "react";
 
+/**
+ * Class names keyed by string with optional boolean activation (object or map).
+ */
 type CssClassRecord =
   | Record<string, Nullish<boolean>>
   | Map<string, Nullish<boolean>>;
+/**
+ * Mixed list of class strings and `[className, active]` tuples.
+ */
 type CssClassArray = (
   | Nullish<string>
   | [className: string, active: Nullish<boolean>]
 )[];
+/**
+ * Arguments accepted by {@link cssClasses}: a tuple of one record, or a mixed array form.
+ */
 type CssClassInput = CssClassArray | [CssClassRecord];
 
 /**
@@ -34,6 +43,7 @@ const isClassRecord = (classes: CssClassInput): classes is [CssClassRecord] => {
   );
 };
 
+/** Narrows `isArray` to {@link CssClassArray} for class-list tuples. */
 const isClassArray = isArray as Predicate<CssClassArray>;
 
 /**

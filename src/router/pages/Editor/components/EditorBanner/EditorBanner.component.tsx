@@ -14,6 +14,11 @@ const VALIDATION_STATE_COLORS: ValueMap<ValidationState, ThemeName> = {
   stale: "warning_surface1",
 };
 
+/**
+ * Bottom bar: file name, row count, validation state, run validation, download, navigator.
+ *
+ * @return {JSX.Element} Footer banner
+ */
 export function EditorBanner() {
   const runValidation = () => {
     STORES.validation.validate();

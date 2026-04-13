@@ -15,6 +15,7 @@ import { validation$ } from "../validation";
 const EDITOR_HISTORY_SIZE = 100;
 const EDITOR_HISTORY_CUTOFF_SIZE = EDITOR_HISTORY_SIZE - 1;
 
+/** Focused cell, Virtuoso ref, edit pipeline with undo/redo, and error panel toggle. */
 export const editor$: Observable<EditorStore> = observable<EditorStore>({
   focusedCellPath: null,
   showErrorPanel: false,

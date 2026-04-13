@@ -1,3 +1,11 @@
+/**
+ * Triggers a browser download of a string as a file.
+ *
+ * @param {string} contents - File body
+ * @param {string} filename - Suggested download filename
+ * @param {string} [mimeType="text/plain;charset=utf-8"] - MIME type for the blob
+ * @return {void}
+ */
 export function downloadStringAsFile(
   contents: string,
   filename: string,

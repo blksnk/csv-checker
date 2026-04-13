@@ -10,18 +10,39 @@ import type { Nullable } from "@ubloimmo/front-util";
 import { Fragment } from "react/jsx-runtime";
 import type { ReactNode } from "react";
 
+/**
+ * Type guard: item is a flat {@link SelectOption}.
+ *
+ * @template TValue - Option value type
+ * @param {SelectOptionOrGroup<TValue>} optionOrGroup - Item from options list
+ * @return {optionOrGroup is SelectOption<TValue>} Whether the item is a single option
+ */
 export function isSelectOption<TValue>(
   optionOrGroup: SelectOptionOrGroup<TValue>,
 ): optionOrGroup is SelectOption<TValue> {
   return "value" in optionOrGroup;
 }
 
+/**
+ * Type guard: item is a {@link SelectOptionGroup}.
+ *
+ * @template TValue - Nested option value type
+ * @param {SelectOptionOrGroup<TValue>} optionOrGroup - Item from options list
+ * @return {optionOrGroup is SelectOptionGroup<TValue>} Whether the item is a group
+ */
 export function isSelectOptionGroup<TValue>(
   optionOrGroup: SelectOptionOrGroup<TValue>,
 ): optionOrGroup is SelectOptionGroup<TValue> {
   return "options" in optionOrGroup;
 }
 
+/**
+ * Builds a flat index map for Tamagui `Select.Item` `index` props (handles grouped options).
+ *
+ * @template TValue - Option value type
+ * @param {SelectOptionOrGroup<TValue>[] | undefined} optionsOrGroups - Full options tree
+ * @return {(itemValue: TValue) => number} Getter returning sequential index for a value
+ */
 export function getItemIndex<TValue>(
   optionsOrGroups?: SelectOptionOrGroup<TValue>[],
 ) {
@@ -48,8 +69,18 @@ export function getItemIndex<TValue>(
   };
 }
 
+/** Index lookup returned by {@link getItemIndex}. */
 type IndexGetterFn<TValue> = ReturnType<typeof getItemIndex<TValue>>;
 
+/**
+ * Renders one flat select item with optional description and check indicator.
+ *
+ * @template TValue - Nullable string value type
+ * @param {SelectOption<TValue>} option - Option metadata
+ * @param {number} index - Position in the flattened list (for React keys)
+ * @param {IndexGetterFn<TValue>} indexGetter - Maps value to Tamagui item index
+ * @return {JSX.Element} Fragment with separator and item
+ */
 export function renderSelectOption<TValue extends Nullable<string>>(
   { label, value, description }: SelectOption<TValue>,
   index: number,
@@ -84,6 +115,15 @@ export function renderSelectOption<TValue extends Nullable<string>>(
   );
 }
 
+/**
+ * Renders a labeled group containing nested {@link renderSelectOption} rows.
+ *
+ * @template TValue - Nullable string value type
+ * @param {SelectOptionGroup<TValue>} group - Group label and options
+ * @param {number} index - Group index for keys
+ * @param {IndexGetterFn<TValue>} indexGetter - Flat index resolver
+ * @return {JSX.Element} Group fragment
+ */
 export function renderSelectOptionGroup<TValue extends Nullable<string>>(
   { label, options }: SelectOptionGroup<TValue>,
   index: number,
@@ -105,6 +145,14 @@ export function renderSelectOptionGroup<TValue extends Nullable<string>>(
   );
 }
 
+/**
+ * Maps options or groups to Tamagui select viewport content.
+ *
+ * @template TValue - Nullable string value type
+ * @param {IndexGetterFn<TValue>} indexGetter - From {@link getItemIndex}
+ * @param {SelectOptionOrGroup<TValue>[] | undefined} optionsOrGroups - Options tree
+ * @return {ReactNode} List of items and groups
+ */
 export function renderSelectItems<TValue extends Nullable<string>>(
   indexGetter: IndexGetterFn<TValue>,
   optionsOrGroups?: SelectOptionOrGroup<TValue>[],

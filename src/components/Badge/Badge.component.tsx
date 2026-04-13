@@ -1,6 +1,12 @@
 import type { BadgeProps } from "./Badge.types";
 import { Paragraph, XStack } from "tamagui";
 
+/**
+ * Renders a themed badge with optional leading icon.
+ *
+ * @param {BadgeProps} props - Content, theme, icon, and optional click
+ * @return {JSX.Element} Badge row
+ */
 export function Badge({ children, theme, icon: Icon, onClick }: BadgeProps) {
   return (
     <XStack

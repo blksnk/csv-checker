@@ -7,6 +7,7 @@ import {
   type NonOptional,
 } from "@ubloimmo/front-util";
 
+/** Logger prefix strings for each log level, after applying a scope prefix. */
 type PrefixConf = NonOptional<LoggerConfig["prefixes"]>;
 
 const basePrefixes: PrefixConf = {
@@ -17,6 +18,12 @@ const basePrefixes: PrefixConf = {
   debug: "Debug",
 };
 
+/**
+ * Builds padded, level-specific prefix strings for a named logger scope.
+ *
+ * @param {string} prefix - Scope name shown in each log line
+ * @return {PrefixConf} Prefix map aligned to the longest label width
+ */
 function getLoggerPrefixes(prefix: string): PrefixConf {
   const prefixes = transformObject(
     basePrefixes,
@@ -35,9 +42,19 @@ function getLoggerPrefixes(prefix: string): PrefixConf {
   return prefixes;
 }
 
+/**
+ * Factory for scoped {@link Log} instances with aligned prefixes.
+ */
 export class Logger {
   constructor() {}
 
+  /**
+   * Creates a logger instance with the given scope prefix.
+   *
+   * @param {string} prefix - Scope label prepended to log output
+   * @param {Omit<LoggerConfig, "prefixes">} [config] - Logger options except prefixes
+   * @return {Log} Configured logger
+   */
   derive(prefix: string, config: Omit<LoggerConfig, "prefixes"> = {}): Log {
     return Log({
       prefixes: getLoggerPrefixes(prefix),
@@ -46,6 +63,13 @@ export class Logger {
     });
   }
 
+  /**
+   * Static alias for {@link Logger#derive}.
+   *
+   * @param {string} prefix - Scope label prepended to log output
+   * @param {Omit<LoggerConfig, "prefixes">} [config] - Logger options except prefixes
+   * @return {Log} Configured logger
+   */
   static derive(
     prefix: string,
     config: Omit<LoggerConfig, "prefixes"> = {},

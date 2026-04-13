@@ -9,6 +9,12 @@ import { Paragraph } from "tamagui";
 import { lineBreaker } from "@/utils/string.utils";
 import { Upload } from "@tamagui/lucide-icons-2";
 
+/**
+ * Single-file CSV picker with drag-and-drop and click-to-upload.
+ *
+ * @param {DropZoneProps} props - `onDrop` handler and optional label copy
+ * @return {JSX.Element} Themed dropzone region
+ */
 export function DropZone(props: DropZoneProps) {
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {

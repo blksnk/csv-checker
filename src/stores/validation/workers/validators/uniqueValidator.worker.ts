@@ -2,13 +2,19 @@ import type { CsvCellValue } from "@/stores/csv/csv.types";
 import type { SchemaColumnName } from "@/stores/schema";
 import type { ValidationErrorList } from "../../validation.types";
 
+/** Input for {@link validateUnique}. */
 type UniqueValidatorPayload = {
   columnName: SchemaColumnName;
   columnCells: CsvCellValue[];
   maxOutput: number;
 };
 
-// we deliberately choose to iterate over all rows, not stopping when there is an error so as to collect all faulty cell values in one go
+/**
+ * Finds duplicate non-unique values in a column (iterates all rows; caps errors at `maxOutput`).
+ *
+ * @param {UniqueValidatorPayload} payload - Column cells and error cap
+ * @return {ValidationErrorList<"unique">} Uniqueness violations with related row paths
+ */
 export function validateUnique({
   columnName,
   columnCells,

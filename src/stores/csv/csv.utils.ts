@@ -1,6 +1,12 @@
 import { parseCsvFile } from "@/utils/csv.utils";
 import type { CsvRow, CsvRowData } from "./csv.types";
 
+/**
+ * Parses a CSV file into {@link CsvRow} records with sequential `__row_id__` values.
+ *
+ * @param {File} file - User-selected CSV file
+ * @return {Promise<CsvRow[]>} Parsed rows, or empty if no data
+ */
 export async function parseCsvFileData(file: File): Promise<CsvRow[]> {
   const parseResults = await parseCsvFile(file, {
     header: true,

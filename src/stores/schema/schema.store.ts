@@ -15,6 +15,7 @@ import { objectKeys, objectValues, type VoidFn } from "@ubloimmo/front-util";
 import { INDEXED_DB_TABLES, persistObservable } from "@/utils/store.utils";
 import { validation$ } from "../validation";
 
+/** Global schema columns, configuration actions, and merge behavior on new CSV uploads. */
 export const schema$: Observable<SchemaStore> = observable<SchemaStore>({
   columns: ObservableHint.plain({}),
   columnsArray: () => objectValues(schema$.columns.get()),
@@ -95,6 +96,7 @@ export const schema$: Observable<SchemaStore> = observable<SchemaStore>({
   },
 });
 
+/** IndexedDB persistence for `schema$.columns`. */
 export const schemaColumnsSyncState$ = persistObservable(
   schema$.columns,
   INDEXED_DB_TABLES.SCHEMA_COLUMNS,

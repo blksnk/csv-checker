@@ -4,14 +4,22 @@ import type {
   ValidationErrorType,
 } from "../validation.types";
 
+/** Per-column error lists keyed by validator name prefix. */
 type AggregateErrors = {
   [TErrorType in ValidationErrorType as `${TErrorType}Errors`]: ValidationErrorList<TErrorType>;
 };
 
+/** Input for {@link aggregateErrors}. */
 type AggregateErrorsPayload = {
   columnErrors: AggregateErrors[];
 };
 
+/**
+ * Flattens per-column error arrays into a nested map: cell path → rule → error.
+ *
+ * @param {AggregateErrorsPayload} payload - One aggregate object per schema column
+ * @return {ValidationErrorMap} Merged error map
+ */
 export function aggregateErrors({
   columnErrors,
 }: AggregateErrorsPayload): ValidationErrorMap {

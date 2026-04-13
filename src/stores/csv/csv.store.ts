@@ -5,6 +5,7 @@ import { parseCsvFileData } from "./csv.utils";
 import { INDEXED_DB_TABLES, persistObservable } from "@/utils/store.utils";
 import { downloadCsvFile } from "@/utils/csv.utils";
 
+/** Global CSV data, file name, load/export actions, and row persistence sync. */
 export const csv$: Observable<CsvStore> = observable<CsvStore>({
   file: {
     name: null,
@@ -33,6 +34,7 @@ export const csv$: Observable<CsvStore> = observable<CsvStore>({
   },
 });
 
+/** IndexedDB-backed sync handle for `csv$.rows` (array ↔ record transform). */
 export const csvRowsSyncState$ = persistObservable<
   CsvRow[],
   Record<number, CsvRow>

@@ -23,6 +23,11 @@ import { Virtuoso } from "react-virtuoso";
 import { Link } from "react-router";
 import { PAGES } from "@/router/pages";
 
+/**
+ * Side panel listing validation errors with scroll-to-row and download actions.
+ *
+ * @return {JSX.Element} Error list and toolbar
+ */
 export function EditorErrorPanel() {
   const errorCellPaths = useValue(
     () => STORES.validation.errorCellPaths.get(),

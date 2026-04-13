@@ -1,6 +1,12 @@
 import { Footer, XStack } from "tamagui";
 import type { BannerProps } from "./Banner.types";
 
+/**
+ * Absolutely positioned footer bar for page-level actions.
+ *
+ * @param {BannerProps} props - Child nodes
+ * @return {JSX.Element} Footer banner
+ */
 export function Banner({ children }: BannerProps) {
   return (
     <Footer

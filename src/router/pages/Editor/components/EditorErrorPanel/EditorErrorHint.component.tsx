@@ -5,10 +5,17 @@ import { Memo } from "@legendapp/state/react";
 import { AlertTriangle } from "@tamagui/lucide-icons-2";
 import { Paragraph, XStack } from "tamagui";
 
+/** Single validation error line inside an {@link EditorErrorItem}. */
 type ErrorHintProps = {
   item$: Observable<ValidationError<ValidationErrorType>>;
 };
 
+/**
+ * Renders one error message with icon and line breaks.
+ *
+ * @param {ErrorHintProps} props - Observable validation error
+ * @return {JSX.Element} Hint row
+ */
 export function EditorErrorHint({ item$: error$ }: ErrorHintProps) {
   return (
     <XStack

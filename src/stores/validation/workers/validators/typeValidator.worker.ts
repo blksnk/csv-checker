@@ -2,6 +2,7 @@ import type { CsvCellValue } from "@/stores/csv/csv.types";
 import type { SchemaColumnName, SchemaColumnType } from "@/stores/schema";
 import type { ValidationErrorList } from "../../validation.types";
 
+/** Input for {@link validateColumnTypes}. */
 type ValidateCellPayload = {
   columnCells: CsvCellValue[];
   columnType: SchemaColumnType;
@@ -9,6 +10,12 @@ type ValidateCellPayload = {
   maxOutput: number;
 };
 
+/**
+ * Validates non-empty string cells against {@link SchemaColumnType}, up to `maxOutput` errors.
+ *
+ * @param {ValidateCellPayload} payload - Cells, expected type, column name, and error cap
+ * @return {ValidationErrorList<"type">} Type mismatch errors
+ */
 export function validateColumnTypes({
   columnCells,
   columnType,
@@ -80,8 +87,6 @@ export function validateColumnTypes({
         if (!URL_REGEX.test(cellValue)) errors.push(error);
         return;
       case "uuid":
-        UUID_REGEX.lastIndex = 0;
-        console.log(UUID_REGEX.test(cellValue));
         UUID_REGEX.lastIndex = 0;
         if (!UUID_REGEX.test(cellValue)) errors.push(error);
         return;

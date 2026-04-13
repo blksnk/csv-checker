@@ -1,6 +1,12 @@
 import { Paragraph, Tooltip as T } from "tamagui";
 import type { TooltipProps } from "./Tooltip.types";
 
+/**
+ * Hover/focus tooltip with arrow and light theme content.
+ *
+ * @param {TooltipProps} props - Trigger children, content, placement
+ * @return {JSX.Element} Tamagui tooltip
+ */
 export function Tooltip({
   children,
   content,

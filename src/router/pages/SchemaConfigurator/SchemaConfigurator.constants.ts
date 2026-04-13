@@ -2,6 +2,7 @@ import type { SelectOptionOrGroup } from "@/components";
 import { SCHEMA_COLUMN_TYPES, type SchemaColumnType } from "@/stores/schema";
 import type { ValueMap } from "@ubloimmo/front-util";
 
+/** Human-readable label and description for each {@link SchemaColumnType} in the UI. */
 export const SCHEMA_COLUMN_TYPE_OPTION_COPY: ValueMap<
   SchemaColumnType,
   { label: string; description?: string }
@@ -63,6 +64,7 @@ export const SCHEMA_COLUMN_TYPE_OPTION_COPY: ValueMap<
   },
 };
 
+/** Group headings for the type select; types listed here are removed from the ungrouped remainder. */
 const COLUMN_TYPE_OPTION_GROUP_DEFS: {
   label: string;
   types: SchemaColumnType[];
@@ -85,6 +87,9 @@ const COLUMN_TYPE_OPTION_GROUP_DEFS: {
   },
 ];
 
+/**
+ * Select options for column type: grouped blocks plus any types not assigned to a group.
+ */
 export const COLUMN_TYPE_OPTIONS =
   ((): SelectOptionOrGroup<SchemaColumnType>[] => {
     const notGrouped = new Set<SchemaColumnType>(

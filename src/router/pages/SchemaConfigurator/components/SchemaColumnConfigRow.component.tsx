@@ -13,21 +13,30 @@ import type { DeepKeyOfType } from "@ubloimmo/front-util";
 import { H4, Paragraph, Separator, XStack, YStack } from "tamagui";
 import { COLUMN_TYPE_OPTIONS } from "../SchemaConfigurator.constants";
 
+/** One row in the schema table: observable column name and shared name options. */
 type SchemaColumnConfigRowProps = {
   item$: Observable<SchemaColumnName>;
   columnNameOptions$: Observable<SelectOption<SchemaColumnName>[]>;
 };
 
+/** Keys on {@link SchemaColumnConstraints} that hold {@link SchemaColumnRelationConstraint}. */
 type RelationConstraintKey = DeepKeyOfType<
   Required<SchemaColumnConstraints>,
   SchemaColumnRelationConstraint
 >;
 
+/** Simple on/off constraint keys (non-relation). */
 type BooleanConstraintKey = Exclude<
   keyof SchemaColumnConstraints,
   RelationConstraintKey
 >;
 
+/**
+ * Configures type, uniqueness, required, and conditional rules for one schema column.
+ *
+ * @param {SchemaColumnConfigRowProps} props - Observable column id and name options
+ * @return {JSX.Element} Column config row
+ */
 export function SchemaColumnConfigRow({
   item$: columnName$,
   columnNameOptions$,

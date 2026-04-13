@@ -100,6 +100,7 @@ const builtThemes = createV5Theme({
   },
 });
 
+/** Tamagui theme map produced by `createV5Theme` (light/dark and semantic children). */
 export type Themes = typeof builtThemes;
 
 // the process.env conditional here is optional but saves web client-side bundle
@@ -107,6 +108,7 @@ export type Themes = typeof builtThemes;
 // back into JS for you, and the bundler plugins set TAMAGUI_ENVIRONMENT. so
 // long as you are using the Vite, Next, Webpack plugins this should just work,
 // but if not you can just export builtThemes directly as themes:
+/** Resolved theme tokens; empty on client production builds when CSS hydrates themes. */
 export const themes: Themes =
   process.env.TAMAGUI_ENVIRONMENT === "client" &&
   process.env.NODE_ENV === "production"
@@ -132,6 +134,7 @@ const animations = createAnimations({
   },
 });
 
+/** Root Tamagui config: default v5 config plus themes and motion animations. */
 export const config = createTamagui({
   ...defaultConfig,
   themes,

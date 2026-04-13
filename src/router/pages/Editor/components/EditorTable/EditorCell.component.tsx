@@ -16,12 +16,19 @@ import styles from "./EditorTable.module.css";
 import type { ValidationCellPath } from "@/stores/validation";
 import { objectKeys } from "@ubloimmo/front-util";
 
+/** One editable cell: observable column name, row index, optional DOM id. */
 type EditorCellProps = {
   item$: Observable<SchemaColumnName>;
   id?: string;
   rowIndex: number;
 };
 
+/**
+ * Table cell with validation theme, pause-when-off-screen, and focused input.
+ *
+ * @param {EditorCellProps} props - Column, row, id
+ * @return {JSX.Element} Cell with {@link EditorCellInput} when focused
+ */
 export function EditorCell(props: EditorCellProps) {
   const cellRef = useRef<HTMLTableCellElement>(null);
   const { PauseProvider, isPaused$ } = usePauseProvider();
@@ -58,10 +65,17 @@ export function EditorCell(props: EditorCellProps) {
   );
 }
 
+/** Inner content once `path$` is known. */
 type EditorCellContentProps = EditorCellProps & {
   path$: Observable<CellPath>;
 };
 
+/**
+ * Renders display text or {@link EditorCellInput} depending on focus.
+ *
+ * @param {EditorCellContentProps} props - Column, row, and cell path
+ * @return {JSX.Element} Cell body
+ */
 function EditorCellContent({
   item$: columnName$,
   rowIndex,

@@ -7,6 +7,11 @@ import { Fragment } from "react/jsx-runtime";
 
 const PAGE_ENTRIES = () => objectEntries(PAGES);
 
+/**
+ * Horizontal list of router links for each entry in {@link PAGES}.
+ *
+ * @return {JSX.Element} Navigation links
+ */
 export function Nav() {
   const entries = PAGE_ENTRIES();
   return (

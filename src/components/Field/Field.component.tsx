@@ -4,6 +4,12 @@ import type { FieldProps } from "./Field.types";
 import { HelpCircle } from "@tamagui/lucide-icons-2";
 import { Tooltip } from "../Toolip";
 
+/**
+ * Renders a Tamagui label + input pair, optionally with a tooltip on the label.
+ *
+ * @param {FieldProps} props - Input component, label, and optional tooltip
+ * @return {JSX.Element} Field layout
+ */
 export function Field({ Input, label, tooltip }: FieldProps) {
   const id = useId();
 

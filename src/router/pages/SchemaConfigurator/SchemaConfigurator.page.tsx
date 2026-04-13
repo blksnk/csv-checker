@@ -8,6 +8,11 @@ import { SchemaColumnConfigRow } from "./components/SchemaColumnConfigRow.compon
 import { Link } from "react-router";
 import { PAGES } from "..";
 
+/**
+ * Lists each column with type and constraint controls wired to the schema store.
+ *
+ * @return {JSX.Element} Schema configurator layout
+ */
 export function SchemaConfiguratorPage() {
   const columnNameOptions$ = useObservable<SelectOption<SchemaColumnName>[]>(
     () => {

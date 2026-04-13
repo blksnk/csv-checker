@@ -5,6 +5,7 @@ import { csv$ } from "../csv";
 import { schema$ } from "../schema";
 import { objectKeys } from "@ubloimmo/front-util";
 
+/** Async validation state, flattened error paths, and `validate` / `invalidate`. */
 export const validation$: Observable<ValidationStore> =
   observable<ValidationStore>({
     state: "pending",

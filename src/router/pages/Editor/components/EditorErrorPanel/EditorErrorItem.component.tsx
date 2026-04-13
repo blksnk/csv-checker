@@ -7,10 +7,17 @@ import { STORES } from "@/stores";
 import { ArrowUpRight } from "@tamagui/lucide-icons-2";
 import { Tooltip } from "@/components";
 
+/** One error group for a single {@link ValidationCellPath}. */
 type EditorErrorItemProps = {
   path: ValidationCellPath;
 };
 
+/**
+ * Renders all errors for one failing cell: messages and jump-to-row control.
+ *
+ * @param {EditorErrorItemProps} props - Cell path string
+ * @return {JSX.Element} Error item
+ */
 export function EditorErrorItem({ path }: EditorErrorItemProps) {
   const cellErrors$ = useObservable(() =>
     STORES.validation.errorMap[path].get(),

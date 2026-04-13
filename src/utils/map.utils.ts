@@ -1,8 +1,10 @@
 /**
- * Predicate typescript function that checks whether the value corresponds to a Map
+ * Type guard: value is a `Map` instance.
  *
- * @param value — unknown value to check
- * @returns — true if the value corresponds to a Map
+ * @template TKey - Map key type
+ * @template TValue - Map value type
+ * @param {unknown} value - Value to test
+ * @return {value is Map<TKey, TValue>} Whether `value` is a `Map`
  */
 export const isMap = <TKey, TValue>(
   value: unknown,

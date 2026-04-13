@@ -7,6 +7,11 @@ import { XStack } from "tamagui";
 import { EditorErrorPanel } from "./components/EditorErrorPanel";
 import { when } from "@legendapp/state";
 
+/**
+ * Spreadsheet editor: virtualized table, optional error panel, footer banner, undo/redo shortcuts.
+ *
+ * @return {JSX.Element} Editor page layout
+ */
 export function EditorPage() {
   // setup keyboard events for undo/redo
   useMountOnce(() => {

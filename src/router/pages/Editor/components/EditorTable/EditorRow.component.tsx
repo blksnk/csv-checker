@@ -4,6 +4,12 @@ import { STORES } from "@/stores";
 import styles from "./EditorTable.module.css";
 import { Paragraph } from "tamagui";
 
+/**
+ * One data row: index cell plus a cell per schema column.
+ *
+ * @param {number} rowIndex - Zero-based row index in `STORES.csv.rows`
+ * @return {JSX.Element} Table row fragment
+ */
 export function EditorRow(rowIndex: number) {
   return (
     <>

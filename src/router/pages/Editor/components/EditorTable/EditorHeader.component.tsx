@@ -4,6 +4,11 @@ import { EditorHeaderCell } from "./EditorHeaderCell.component";
 import styles from "./EditorTable.module.css";
 import { H6 } from "tamagui";
 
+/**
+ * Table header: `#` column plus one header cell per schema column.
+ *
+ * @return {JSX.Element} Header row
+ */
 export function EditorHeader() {
   return (
     <tr>

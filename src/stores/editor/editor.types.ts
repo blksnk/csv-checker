@@ -4,17 +4,22 @@ import type { CsvCellValue } from "../csv/csv.types";
 import type { Observable } from "@legendapp/state";
 import type { TableVirtuosoHandle } from "react-virtuoso";
 
+/** Identifies one editable cell by row index and schema column name. */
 export type CellPath = {
   rowIndex: number;
   columnName: SchemaColumnName;
 };
 
+/** One undo/redo snapshot: cell, value after the edit, and ordering timestamp. */
 export type EditorHistoryEntry = {
   path: CellPath;
   value: CsvCellValue;
   timestamp: number;
 };
 
+/**
+ * Undo/redo stack with map-backed entries and navigation actions.
+ */
 export type EditorHistory = {
   entries: Map<number, EditorHistoryEntry>;
   currentEntryId: Nullable<number>;
@@ -39,6 +44,9 @@ export type EditorHistory = {
   clear: VoidFn;
 };
 
+/**
+ * Editor UI state: focus, table ref, cell edits, undo stack, and error panel visibility.
+ */
 export interface EditorStore {
   focusedCellPath: Nullable<CellPath>;
   tableRef: {

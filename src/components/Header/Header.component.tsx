@@ -4,6 +4,12 @@ import type { HeaderProps } from "./Header.types";
 import { Header as HeaderElement } from "tamagui";
 import { Nav } from "../Nav";
 
+/**
+ * Top header with title, optional subtitle, and primary navigation.
+ *
+ * @param {HeaderProps} props - Title and optional subtitle
+ * @return {JSX.Element} Header layout
+ */
 export function Header({ title = "Header", subTitle }: HeaderProps) {
   return (
     <HeaderElement

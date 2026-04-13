@@ -1,6 +1,7 @@
 import type { Observable } from "@legendapp/state";
 import type { AsyncFn, Enum, Optional, VoidFn } from "@ubloimmo/front-util";
 
+/** Supported logical types for imported CSV columns. */
 export const SCHEMA_COLUMN_TYPES = [
   "string",
   "int",
@@ -16,10 +17,15 @@ export const SCHEMA_COLUMN_TYPES = [
   "uuid",
 ] as const;
 
+/** One of {@link SCHEMA_COLUMN_TYPES}. */
 export type SchemaColumnType = Enum<typeof SCHEMA_COLUMN_TYPES>;
 
+/** Column header string as used in CSV and as map key in the schema. */
 export type SchemaColumnName = string;
 
+/**
+ * Optional link to another column for conditional required rules (`requiredIf*`).
+ */
 export type SchemaColumnRelationConstraint =
   | {
       active: false;
@@ -27,6 +33,7 @@ export type SchemaColumnRelationConstraint =
     }
   | { active: true; columnName: SchemaColumnName };
 
+/** Validation rules attached to a single column. */
 export type SchemaColumnConstraints = {
   /**
    * All rows in this column should have unique values
@@ -46,6 +53,7 @@ export type SchemaColumnConstraints = {
   requiredIfNotFilled?: SchemaColumnRelationConstraint;
 };
 
+/** Metadata for one column: type, sample preview values, constraints, and UI state. */
 export type SchemaColumn = {
   name: SchemaColumnName;
   type: SchemaColumnType;
@@ -55,17 +63,23 @@ export type SchemaColumn = {
   configured: boolean;
 };
 
+/** All columns keyed by {@link SchemaColumnName}. */
 export type SchemaColumnRecord = Record<SchemaColumnName, SchemaColumn>;
 
+/** Top-level schema container (columns only). */
 export type Schema = {
   columns: SchemaColumnRecord;
 };
 
+/** Partial updates when configuring a column from the UI. */
 export type SchemaColumnConfig = {
   type?: SchemaColumnType;
   constraints?: SchemaColumnConstraints;
 };
 
+/**
+ * Observable store: inferred columns, configuration, and CSV sync helpers.
+ */
 export type SchemaStore = {
   columns: SchemaColumnRecord;
   columnsArray: SchemaColumn[];
