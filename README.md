@@ -20,6 +20,28 @@ A browser-only **Spreadsheet Error Checker**: upload a CSV, define per-column ty
 | `/rules` | Schema configurator | One section per spreadsheet column: pick a data type and validation constraints (required, unique, conditional rules, and relations to other columns). |
 | `/editor` | Editor | Full-height spreadsheet-style editor: virtualized grid, a bottom banner for context and navigation, and an error panel you can show or hide to jump to validation issues while you edit. |
 
+## Screenshots
+
+### Home (`/`)
+
+![Home landing page](assets/home.png)
+
+### Upload (`/upload`)
+
+![Upload — empty drop zone](assets/upload_empty.png)
+
+![Upload — CSV preview before continuing](assets/upload_preview.png)
+
+### Schema configurator (`/rules`)
+
+![Rules — starting from a fresh import](assets/rules_empty.png)
+
+![Rules — column types and validation configured](assets/rules_filled.png)
+
+### Editor (`/editor`)
+
+![Spreadsheet editor with grid and error panel](assets/editor.png)
+
 ## Getting started
 
 Prerequisites: [Node.js](https://nodejs.org/) **22.21.x** and [Bun](https://bun.sh/).
