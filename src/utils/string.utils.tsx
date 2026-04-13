@@ -32,6 +32,7 @@ export const lineBreaker = (
   str: string,
   trimLines: boolean = false,
 ): ReactNode => {
+  if (!isString(str)) return null;
   if (isEmptyString(str)) return str;
   return str.split("\n").map((l, index) => {
     const line = trimLines ? l.trim() : l;
