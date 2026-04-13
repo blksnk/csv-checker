@@ -117,6 +117,7 @@ Contextual callouts and explanations help guide users through the flow.
 - Deeper ADRs for worker orchestration and error caps if the validation model grows.
 - Unit / E2E tests
 - Responsive design
+- More fine-grained validation logic: currently, the whole csv data is re-validated each time the user edits a single cell. Since the worker code can be imported and ran on the main thread, I'd like to only run a subset of validation steps on change (required, type check) while running the complete data validation periodically.
 
 ---
 
