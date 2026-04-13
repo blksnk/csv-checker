@@ -113,7 +113,10 @@ Contextual callouts and explanations help guide users through the flow.
 - Stronger handling of edge cases in CSV encoding and very wide files.
   - Handling of error states during file import / CSV parsing
   - Empty states in Rules configuration & Spreadsheet edition steps
-- Better, more user-centric wording & consistent tone.
+- Better, more user-centric wording & consistent tone
+- Error messages could be clearer
+  - In the case of errors related to other cells, providing a quick way to jump to related cells / errors could be useful
+  - While errors message are currently human readable, we don't provide any reassuring copy or indication to the users about what / how to fix errors.
 - Deeper ADRs for worker orchestration and error caps if the validation model grows.
 - Unit / E2E tests
 - Responsive design
