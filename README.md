@@ -49,6 +49,9 @@ The [`inputs/`](inputs/) directory contains CSV files you can upload in the app 
 - **Data:** [PapaParse](https://www.papaparse.com/) for CSV, [react-dropzone](https://react-dropzone.js.org/) for uploads, [react-virtuoso](https://virtuoso.dev/) for the table
 - **Tooling:** [Bun](https://bun.sh/) (package manager and scripts), ESLint, [React Compiler](https://react.dev/learn/react-compiler) (Babel)
 
-## Architecture decision records
+## Architecture design document & decision records
+
+See the main [Architecture & UX design document](docs/design.md) for an overview, workflow, and rationale behind core decisions.
+
 
 For recorded design choices (ADRs), see the [`docs/decisions/`](docs/decisions/) directory.
