@@ -13,7 +13,7 @@ export function HomePage() {
   return (
     <PageLayout
       title="Spreadsheet Error Checker"
-      subTitle="Review and clean your spreadsheet data before you use it elsewhere—at your own pace, with clear guidance."
+      subTitle="Review and clean your spreadsheet data before importing it."
     >
       <YStack self="center" pt="$4" gap="$4" maxWidth={620}>
         <H1>Welcome !</H1>
