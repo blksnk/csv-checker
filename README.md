@@ -13,42 +13,27 @@ A browser-only **Spreadsheet Error Checker**: upload a CSV, define per-column ty
 
 ## Routes
 
-| Path | Page | What you see |
+| Path | Page | Screenshot |
 | --- | --- | --- |
-| `/` | Home | Landing content: what the app does, a three-step overview (upload, rules, edit), notes on privacy and local-only processing, and a call to action toward upload. |
-| `/upload` | Importer | CSV upload via click or drag and drop, a preview of the chosen file, and warnings when replacing data that is already loaded so you do not overwrite a draft by accident. |
-| `/rules` | Schema configurator | One section per spreadsheet column: pick a data type and validation constraints (required, unique, conditional rules, and relations to other columns). |
-| `/editor` | Editor | Full-height spreadsheet-style editor: virtualized grid, a bottom banner for context and navigation, and an error panel you can show or hide to jump to validation issues while you edit. |
-
-## Screenshots
-
-### Home (`/`)
-
-![Home landing page](assets/home.png)
-
-### Upload (`/upload`)
-
-![Upload — empty drop zone](assets/upload_empty.png)
-
-![Upload — CSV preview before continuing](assets/upload_preview.png)
-
-### Schema configurator (`/rules`)
-
-![Rules — starting from a fresh import](assets/rules_empty.png)
-
-![Rules — column types and validation configured](assets/rules_filled.png)
-
-### Editor (`/editor`)
-
-![Spreadsheet editor with grid and error panel](assets/editor.png)
+| `/` | Home | ![Home landing page](assets/home.png) |
+| `/upload` | Importer | ![Upload — CSV preview before continuing](assets/upload_preview.png) |
+| `/rules` | Schema configurator | ![Rules — starting from a fresh import](assets/rules_empty.png) |
+| `/editor` | Editor | ![Spreadsheet editor with grid and error panel](assets/editor.png) |
 
 ## Getting started
 
 Prerequisites: [Node.js](https://nodejs.org/) **22.21.x** and [Bun](https://bun.sh/).
 
-```bash
+```sh
 bun install
 bun run dev
+```
+
+Or with just:
+
+```sh
+just install
+just dev
 ```
 
 Then open the URL shown in the terminal (typically `http://localhost:5173`).
