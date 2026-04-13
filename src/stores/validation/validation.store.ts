@@ -1,4 +1,9 @@
-import { batch, observable, type Observable } from "@legendapp/state";
+import {
+  batch,
+  observable,
+  ObservableHint,
+  type Observable,
+} from "@legendapp/state";
 import type { ValidationStore } from "./validation.types";
 import { validateCsvData } from "./validation.utils";
 import { csv$ } from "../csv";
@@ -9,7 +14,7 @@ import { objectKeys } from "@ubloimmo/front-util";
 export const validation$: Observable<ValidationStore> =
   observable<ValidationStore>({
     state: "pending",
-    errorMap: {},
+    errorMap: ObservableHint.plain({}),
     errorMapIsTruncated: false,
     errorCellPaths: () => {
       return objectKeys(validation$.errorMap.get());

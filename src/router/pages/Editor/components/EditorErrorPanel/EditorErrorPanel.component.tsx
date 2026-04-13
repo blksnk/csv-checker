@@ -29,12 +29,7 @@ import { PAGES } from "@/router/pages";
  * @return {JSX.Element} Error list and toolbar
  */
 export function EditorErrorPanel() {
-  const errorCellPaths = useValue(
-    () => STORES.validation.errorCellPaths.get(),
-    {
-      shallow: true,
-    },
-  );
+  const errorCellPaths = useValue(() => STORES.validation.errorCellPaths.get());
 
   return (
     <YStack
@@ -146,7 +141,7 @@ export function EditorErrorPanel() {
           <YStack flex={1}>
             <Virtuoso
               style={{ height: "100%" }}
-              data={errorCellPaths}
+              data={STORES.validation.errorCellPaths.get()}
               itemContent={(_, path) => <EditorErrorItem path={path} />}
             />
           </YStack>

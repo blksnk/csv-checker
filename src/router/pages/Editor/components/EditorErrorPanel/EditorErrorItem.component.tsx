@@ -1,5 +1,5 @@
 import type { ValidationCellPath } from "@/stores/validation";
-import { For, useObservable } from "@legendapp/state/react";
+import { For } from "@legendapp/state/react";
 import { useMemo } from "react";
 import { Button, H6, XStack, YStack } from "tamagui";
 import { EditorErrorHint } from "./EditorErrorHint.component";
@@ -19,9 +19,6 @@ type EditorErrorItemProps = {
  * @return {JSX.Element} Error item
  */
 export function EditorErrorItem({ path }: EditorErrorItemProps) {
-  const cellErrors$ = useObservable(() =>
-    STORES.validation.errorMap[path].get(),
-  );
   const [rowIndexStr, columnName] = useMemo(() => path.split(";"), [path]);
 
   const rowIndex = useMemo(() => parseInt(rowIndexStr), [rowIndexStr]);
@@ -48,7 +45,7 @@ export function EditorErrorItem({ path }: EditorErrorItemProps) {
       </XStack>
 
       {/* @ts-expect-error support for generic derived observable seems a bit hit and miss*/}
-      <For each={cellErrors$} item={EditorErrorHint} />
+      <For each={STORES.validation.errorMap[path]} item={EditorErrorHint} />
     </YStack>
   );
 }
