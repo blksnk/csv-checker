@@ -45,14 +45,16 @@ Cell errors then get aggregated and shown to the user in a side panel.
 
 #### Error cap
 
-Returned errors are capped, so as to avoid paying huge serialization costs and possible OOM-related crashed when validating huge files.
+Returned errors are capped, so as to avoid paying huge serialization costs and possible OOM-related crashes when validating huge files.
 
 While this implementation detail was originally intended as a way to ensure consistent performance & reliability, it also contributes to better UX:
 
 - We limit the amount of errors the user sees at once, which reduces apparent complexity.
 - In the case errors have been capped, we invite the user to review and possibly edit their validation rules in case something was misconfigured.
 
-**Key structural choices:** separation of **import** (explicit preview and column diff vs current draft), **schema** (types and constraints per column), and **editing** (virtualized cells, error panel, undo). See ADRs in `docs/decisions/` for state, grid, persistence, rules, and import flow.
+### Key structural choices
+
+Separation of **import** (explicit preview and column diff vs current draft), **schema** (types and constraints per column), and **editing** (virtualized cells, error panel, undo). See ADRs in `docs/decisions/` for state, grid, persistence, rules, and import flow.
 
 ---
 
@@ -92,7 +94,7 @@ Rules run **asynchronously** so the UI stays responsive on large datasets. Error
 
 ### User guidance
 
-Whenever possible, technical terms and concepts (typing, constraints, errors) are written and explained in plain, non-technical language. Tooltips also help improving user understanding, while providing reassurance before comitting to an action.
+Whenever possible, technical terms and concepts (typing, constraints, errors) are written and explained in plain, non-technical language. Tooltips also help improve user understanding, while providing reassurance before comitting to an action.
 
 Contextual callouts and explanations help guide users through the flow.
 
